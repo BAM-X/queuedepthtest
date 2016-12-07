@@ -1,0 +1,28 @@
+version: '2'
+services:
+  flask:
+    build:
+      context: ./flaskapp
+    volumes:
+      - /tmp
+    command: uwsgi --die-on-term --ini /app/uwsgi.conf
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - flask
+    volumes_from:
+      - flask
+  load:
+    image: hakobera/locust
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./load:/test
+    environment:
+      - SCENARIO_FILE=/test/locustfile.py
+      - LOCUST_MODE=standalone
+      - TARGET_URL=http://nginx

@@ -1,0 +1,32 @@
+*.swp
+*.swo
+*.pyc
+*.DS_Store
+*.sqlite3
+.directory
+venv
+env
+.tmp
+.sass-cache
+
+pip.log
+pip-cffi.log
+
+# python code profiler reports
+mprofile_*
+
+
+# nosiest unit test results
+*nosetests.xml
+
+# eclipse/pydev
+.project
+.pydevproject
+.settings
+
+# pycharm
+.idea/
+.pycharm_helpers/
+
+# sublime
+*.sublime-*
